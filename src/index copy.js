@@ -8,11 +8,11 @@ import { ChakraProvider } from "@chakra-ui/react";
 import customTheme from "./extendTheme";
 ReactDOM.render(
   <React.StrictMode>
-    {/* <ChakraProvider theme ={customTheme}> */}
+    <ChakraProvider theme ={customTheme}>
       <ShopProvider>
         <App />
       </ShopProvider>
-    {/* </ChakraProvider> */}
+    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
