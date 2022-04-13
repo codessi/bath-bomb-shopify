@@ -19,37 +19,53 @@ class ShopProvider extends Component {
   };
 
   componentDidMount() {
-    if(localStorage.checkout_id){
-      this.fetchCheckout(localStorage.checkout_id)
+    if (localStorage.checkout_id) {
+      this.fetchCheckout(localStorage.checkout_id);
     } else {
-      this.createCheckout()
+      this.createCheckout();
     }
-    
   }
 
   createCheckout = async () => {
-    const checkout = await client.checkout.create()
-    localStorage.setItem("checkout_id", checkout.id)
-    this.setState({checkout: checkout})
+    const checkout = await client.checkout.create();
+    localStorage.setItem("checkout_id", checkout.id);
+    this.setState({ checkout: checkout });
   };
-  // it create empty checkout then save to state and 
+  // it create empty checkout then save to state and
   // it's id to localStorage
 
   fetchCheckout = (checkoutId) => {
-    client.checkout
-      .fetch(checkoutId)
-      .then((checkout) => {
-        this.setState({checkout: checkout})
+    client.checkout.fetch(checkoutId).then((checkout) => {
+      this.setState({ checkout: checkout });
     });
   };
 
-  addItemtoCheckout = async () => {};
+  addItemtoCheckout = async (variantId, quantity) => {
+    const lineItemsToAdd = [
+      {
+        variantId,
+        quantity: parseInt(quantity, 10),
+      },
+    ];
+    const checkout = await client.checkout.addLineItems(
+      this.state.checkout.id,
+      lineItemsToAdd
+    );
+    this.setState({ checkout: checkout });
+    this.openCart();
+  };
 
-  removeLineItem = async (lineItemIdsToRemove) => {};
+  removeLineItem = async (lineItemIdsToRemove) => {
+    client.checkout
+      .removeLineItems(this.state.checkout.id, lineItemIdsToRemove)
+      .then((checkout) => {
+        this.setState({ checkout: checkout });
+      });
+  };
 
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
-    this.setState({ products: products});
+    this.setState({ products: products });
     // console.log( "in fetchall ", products)
   };
 
@@ -58,28 +74,37 @@ class ShopProvider extends Component {
     this.setState({ product: product });
   };
 
-  closeCart = () => {};
+  closeCart = () => {
+    this.setState({ isCartOpen: false });
+  };
 
-  openCart = () => {};
+  openCart = () => {
+    this.setState({ isCartOpen: true });
+  };
 
-  closeMenu = () => {};
+  closeMenu = () => {
+    this.setState({ isMenuOpen: false });
+  };
 
-  openMenu = () => {};
+  openMenu = () => {
+    this.setState({ isMenuOpen: true });
+  };
 
   render() {
-
     return (
-      <ShopContext.Provider value={{
-        ...this.state,
-        fetchAllProducts:this.fetchAllProducts,
-        fetchProductWithHandle:this.fetchProductWithHandle,
-        addItemtoCheckout:this.addItemtoCheckout,
-        removeLineItem:this.removeLineItem,
-        closeCart:this.closeCart,
-        openCart:this.openCart,
-        closeMenu:this.closeMenu,
-        openMenu:this.openMenu,
-      }}>
+      <ShopContext.Provider
+        value={{
+          ...this.state,
+          fetchAllProducts: this.fetchAllProducts,
+          fetchProductWithHandle: this.fetchProductWithHandle,
+          addItemtoCheckout: this.addItemtoCheckout,
+          removeLineItem: this.removeLineItem,
+          closeCart: this.closeCart,
+          openCart: this.openCart,
+          closeMenu: this.closeMenu,
+          openMenu: this.openMenu,
+        }}
+      >
         {this.props.children}
       </ShopContext.Provider>
     );
