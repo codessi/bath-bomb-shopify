@@ -26,7 +26,7 @@ const Hero = ({productsRef}) => {
             w="10rem" backgroundColor="#FE38BD" color="white"
             _hover={{opacity: "70%"}} position="absolute" bottom="10%  " onClick={() => productsRef.current.scrollIntoView()}
           >
-            <a href="#products">Shop Now  </a>
+           Shop Now 
           </Button>
       
       </Center>
