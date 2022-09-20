@@ -20,7 +20,7 @@ const Home = () => {
 
   return (
     <Box>
-      <Hero />
+      <Hero productsRef={productsRef}/>
       <RichText heading="The relaxation you’ve been waiting for." text="Our Bath bombs guarantee a fun, relaxing, and colorful night." />
       <Grid templateColumns="repeat(3, 1fr)">
         {products.map((product, index) => (

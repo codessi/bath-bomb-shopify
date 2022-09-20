@@ -19,7 +19,7 @@ const ProductPages = () => {
 
   if(!product.title) return <div>Loading....</div>
   return (
-    <Box p="2rem">
+    <Box id="products" p="2rem">
       <Grid templateColumns={["repeat(1, 1fr)","repeat(2, 1fr)"]} m="auto">
         <Flex justifyContent="center" alignItems="center">
           <Image src = {product.images[0].src}></Image>
