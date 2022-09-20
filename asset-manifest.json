@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bath-bomb-shopify/static/css/main.e6c13ad2.css",
-    "main.js": "/bath-bomb-shopify/static/js/main.cb402de4.js",
+    "main.css": "/bath-bomb-shopify/static/css/main.6669fc85.css",
+    "main.js": "/bath-bomb-shopify/static/js/main.ea033c76.js",
     "static/js/787.044ba739.chunk.js": "/bath-bomb-shopify/static/js/787.044ba739.chunk.js",
     "index.html": "/bath-bomb-shopify/index.html",
-    "main.e6c13ad2.css.map": "/bath-bomb-shopify/static/css/main.e6c13ad2.css.map",
-    "main.cb402de4.js.map": "/bath-bomb-shopify/static/js/main.cb402de4.js.map",
+    "main.6669fc85.css.map": "/bath-bomb-shopify/static/css/main.6669fc85.css.map",
+    "main.ea033c76.js.map": "/bath-bomb-shopify/static/js/main.ea033c76.js.map",
     "787.044ba739.chunk.js.map": "/bath-bomb-shopify/static/js/787.044ba739.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.cb402de4.js"
+    "static/css/main.6669fc85.css",
+    "static/js/main.ea033c76.js"
   ]
 }
